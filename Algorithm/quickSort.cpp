@@ -6,6 +6,7 @@ void swap(int *a,int *b){
 	*a=*b;
 	*b=t;
 }
+
 int part(int a[100],int l,int h){
 	int pivot=a[h];
 	int j=l-1,i;
@@ -19,8 +20,6 @@ int part(int a[100],int l,int h){
 	return j+1;
 }
 
-
-
 void quicksort(int a[100],int l,int h){
 	if(l<h){
 		int p=part(a,l,h);
@@ -29,10 +28,8 @@ void quicksort(int a[100],int l,int h){
 	}
 }
 
-
 int main(int argc, char const *argv[])
 {
-	
 	int i,j,k,l,m,n;
 	int a[10001];
 	cin>>n;
