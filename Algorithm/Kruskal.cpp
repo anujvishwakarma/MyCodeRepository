@@ -3,13 +3,13 @@ using namespace std;
 
 int find(int u,int parent[100]){
    if(u!=parent[u]){
-   	 parent[u]=parent[parent[u]]; //path compression 
+   	 parent[u]=parent[parent[u]];                         //path compression
    	 u=parent[u];
-   }
+   } 
    return u;
 }
 
-void unite(int u,int v,int rank[10],int parent[100]){ //union by rank
+void unite(int u,int v,int rank[10],int parent[100]){     //union by rank
    if(rank[u]<rank[v]){
    	  parent[u]=v;
       rank[v]+=rank[u];

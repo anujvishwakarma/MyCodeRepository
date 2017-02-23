@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
       }
       cout<<"1";
       return 0;
-	}
+	} 
 	n=s.length();
 	m=n/2;
 	i=m-1;

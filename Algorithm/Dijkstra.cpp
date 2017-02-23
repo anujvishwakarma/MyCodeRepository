@@ -3,6 +3,7 @@
 using namespace std;
 int dist[100];
 typedef pair<int,int> ipair;
+
 int main(int argc, char const *argv[])
 {
 	int i,j,k,l,m,n,u,v,w;
@@ -26,6 +27,7 @@ int main(int argc, char const *argv[])
     src--;
     pq.push(make_pair(src,0));
     dist[src]=0;
+
     while(!pq.empty()){
     	m=pq.top().first;
     	k=pq.top().second;
@@ -41,9 +43,11 @@ int main(int argc, char const *argv[])
         f[m]=1;
     }
     
+
     for(i=0;i<n;i++){
     	cout<<dist[i]<<" ";
     }
+
 
 
 	return 0;
