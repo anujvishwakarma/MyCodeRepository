@@ -91,31 +91,27 @@ int main(int argc, char const *argv[])
 
 	int i,j,k,l,m,n;
   int a[10000];
+  int fr[100001];
   cin>>n>>k;
   for(i=0;i<n;i++){
     cin>>a[i];
   }
-  i=0,j=1;
-  int f=0;
-  int val=a[i]+a[j];
-  while(i<n && j<n){
-    pr2(i,j);
-    if(val==k){
-      cout<<a[i]<<" "<<a[j]<<endl;
-      f=1;
-    }
-    else if(val<k){
-       j++;
-       val+=a[j];
-    }
-    else{
-      i++;
-      val-=a[i];
-    }
+  int curr_sum=a[0];
+  int start=0;
+  for(i=1;i<=n;i++){
+     while(curr_sum>k && start<i-1){
+        curr_sum=curr_sum-a[start];
+        start++;
+     }
+     if(curr_sum==k){
+      cout<<"Found ";pr2(start,i-1);
+      return 1;
+     }
+     if(i<n){
+      curr_sum+=a[i];
+     }
   }
-   if(f==0){
-      cout<<"Not found"<<endl;
-   }
+
 
 	return 0;
 }
