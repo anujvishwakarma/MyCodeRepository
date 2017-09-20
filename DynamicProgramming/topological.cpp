@@ -21,7 +21,7 @@ using namespace std;
 /**********************************************/
 
 
-#define mem(a,b) memset(a,b,sizeif(a))
+#define mem(a,b) memset(a,b,sizeof(a))
 #define fr(i,a) for(i=0;i<a;i++)
 #define rfr(i,a) for(i=a;i>=0,i--)
 #define fr2(i,a,b) for(int i=a;i<b;i++)
@@ -86,33 +86,41 @@ void prm(int a[1001][1001],int x,int y){
 /******************************************/
 
 
+void dfs(std::vector<int> v[1000001],int visit[100],stack<int> &st,int vertex){
+    int i;
+    visit[vertex]=1;
+    for(i=0;i<v[vertex].size();i++){
+        if(!visit[v[vertex][i]]){
+          dfs(v,visit,st,v[vertex][i]);
+        }
+    }
+    st.push(vertex);
+}
+
 int main(int argc, char const *argv[])
 {
 
-	int i,j,k,l,m,n;
-  int a[10000];
-  int fr[100001];
-  cin>>n>>k;
+	int i,j,k,l,m,n,x,y;
+  std::vector<int> v[100001];
+  stack<int>st;
+  int visit[1000];
+  mem(visit,0);
+  cin>>n>>m;
+  for(i=0;i<m;i++){
+      cin>>x>>y;
+      v[x].push_back(y);
+  }
+  
   for(i=0;i<n;i++){
-    cin>>a[i];
+    if(!visit[i]){
+      dfs(v,visit,st,i);
+    }
   }
-  int curr_sum=a[0];
-  int start=0;
-  for(i=1;i<=n;i++){
-     while(curr_sum>k && start<i-1){ 
-        curr_sum=curr_sum-a[start];
-        start++;
-     }
-     if(curr_sum==k){
-      cout<<"Found ";pr2(start,i-1);
-      return 1;
-     }
-     if(i<n){
-      curr_sum+=a[i];
-     }
+  
+  while(!st.empty()){
+    cout<<st.top()<<" ";
+    st.pop();
   }
-
-
 	return 0;
 }
 
