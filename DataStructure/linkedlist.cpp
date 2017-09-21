@@ -86,10 +86,62 @@ void prm(int a[1001][1001],int x,int y){
 /******************************************/
 
 
+struct node
+{
+    int value;
+    struct node *next;
+};
+
+struct node *insert(struct node *start,int k){
+    struct node *tmp=(struct node *)malloc(sizeof(struct node ));
+    tmp->value=k;
+    tmp->next=NULL;
+    if(start==NULL){
+      return tmp;
+    }
+    struct node *head=start;
+    while(head->next!=NULL){
+      head=head->next;
+    }
+    head->next=tmp;
+    return start;
+}
+
+void print(struct node *start){
+     while(start!=NULL){
+        cout<<start->value<<" ";
+        start=start->next;
+     }
+}
+
+struct node *inverse(struct node *start){
+   struct node *curr=start;
+   struct node *prev=NULL;
+   struct node *nextlink=NULL; 
+   while(curr!=NULL){
+       nextlink=curr->next;
+       curr->next=prev;
+       prev=curr;
+       curr=nextlink;
+   }
+   return prev;
+}
+
 int main(int argc, char const *argv[])
 {
-
 	int i,j,k,l,m,n;
+  cin>>n;
+  struct node *start=NULL;
+  
+  for(i=0;i<n;i++){
+       cin>>k;
+       start=insert(start,k);
+  }
+  print(start);
+  cout<<endl;
+  struct node *inversStart=start;
+  inversStart= inverse(inversStart);
+  print(inversStart);
 	return 0;
 }
 
