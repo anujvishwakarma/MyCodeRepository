@@ -70,6 +70,14 @@ template< typename T,typename U> inline void amax(T &x,U y){if (x<y) x=y;}
 #define pr3(a,b,c) cout<<"debug is "<<a<<" "<<b<<" "c<<" "endl;
 #define nl cout<<endl;
 
+void pra(int a[10],int n){
+   cout<<"#######Deubg-Array##########"<<endl;
+   for(int i=0;i<n;i++){
+      cout<<a[i]<<" ";
+   }
+   cout<<endl;
+   cout<<"###########end#############"<<endl;
+}
 
 void prm(int a[1001][1001],int x,int y){
   nl
@@ -83,14 +91,48 @@ void prm(int a[1001][1001],int x,int y){
    nl;
   cout<<"############end#############"<<endl;
 }
-/******************************************/
+/*******************************************/
 
+void update(int value,int bit[10],int index,int n){
+  index++;
+  while(index<=n){
+     bit[index]+=value;
+     index+=(index & (-index));
+  }
+}
+
+int getSum(int bit[10],int index){
+   index++;
+   int sum=0;
+   while(index>0){
+       sum+=bit[index];
+       index-=(index & (-index));
+   }
+   return sum; 
+}
+
+void createTree(int a[10],int bit[10],int n){
+   int i;
+   bit[0]=0;
+   for(i=0;i<n;i++){
+      update(a[i],bit,i,n);
+   }
+}
 
 int main(int argc, char const *argv[])
 {
-
 	int i,j,k,l,m,n;
-  
+  int a[100001];
+  int bit[100001];
+  cin>>n;
+  for(i=0;i<n;i++){
+    cin>>a[i];
+  }
+  createTree(a,bit,n);
+  pra(a,n);
+  pra(bit,n+1);
+  cin>>k>>l;
+  cout<<getSum(bit,l)-getSum(bit,k-1)<<endl;
 	return 0;
 }
 
