@@ -1,9 +1,9 @@
 
 /*
     This function uses stdc++ 11 version. So compile with -std=c++11
-    or better include this header file <bits/stdc++.h> in yout library. 
-    ------May the spirit of Batman will always with you------
-    Author : Anuj Vishwakarma (A Failure) 
+    or better include this header file <bits/stdc++.h> in your library. 
+    ------May the spirit of Batman will always be with you------
+    @author : Anuj Vishwakarma
 */
 
 
@@ -20,9 +20,12 @@ using namespace std;
 #define sclf(t) scanf("%lf",&t)
 /**********************************************/
 
-#define mem(a,b) memset(a,b,sizeif(a))
-#define fr(i,a,b) for(int i=a;i<b;i++)
-#define rfr(i,a,b) for(int i=b-1;i>=a;i--)
+
+#define mem(a,b) memset(a,b,sizeof(a))
+#define fr(i,a) for(i=0;i<a;i++)
+#define rfr(i,a) for(i=a;i>=0,i--)
+#define fr2(i,a,b) for(int i=a;i<b;i++)
+#define rfr2(i,a,b) for(int i=b;i>=a;i--)
 #define foreach(it,l) for(auto it=l.begin();it!=l.end();it++)
 
 /*********************************************/
@@ -61,49 +64,73 @@ template< typename T,typename U> inline void amax(T &x,U y){if (x<y) x=y;}
 
 
 /* Debug Function */
-#define pr(a) cout<<a<<" ";
-#define pr1(a) cout<<a<<" "<<endl;
+#define pr(a) cout<<"debug is "<<a<<" ";
+#define pr1(a) cout<<"debug is "<<a<<" "<<endl;
+#define pr2(a,b) cout<<"debug is "<<a<<" "<<b<<endl;
+#define pr3(a,b,c) cout<<"debug is "<<a<<" "<<b<<" "c<<" "endl;
 #define nl cout<<endl;
-#define pr2(a,b) cout<<a<<" "<<b<<endl;
-#define pr3(a,b,c) cout<<a<<" "<<b<<" "c<<" "endl;
+
 
 void prm(int a[1001][1001],int x,int y){
+  nl
+  cout<<"########Debug Matrix########"<<endl;
    for(int i=0;i<x;i++){
-   	 for(int j=0;j<y;j++){
+     for(int j=0;j<y;j++){
          pr(a[i][j]);
-   	 }
-   	 nl;
+     }
+     nl;
    }
    nl;
+  cout<<"############end#############"<<endl;
+}
+/******************************************/
+
+/*****************. MAIN-CODE .*************************/
+
+int main(int argc, char const *argv[]){
+  int i,j,k,l,m,n;
+  int a[1001][1001];
+  string s1,s2;
+  cin>>s1>>s2;
+  n=s1.length();
+  m=s2.length();
+  for(i=0;i<=n;i++){
+    for(j=0;j<=m;j++){
+      if(i==0){
+        a[i][j]=j;
+      }
+      else if(j==0){
+        a[i][j]=i;
+      }
+      else if(s1[i-1]==s2[j-1]){
+        a[i][j]=a[i-1][j-1];
+      }
+      else{
+        a[i][j]=1+min(a[i-1][j-1],min(a[i-1][j],a[i][j-1]));
+      }
+    }
+  }
+  cout<<a[n][m]<<endl;
+	return 0;
 }
 
-int main(int argc, char const *argv[])
-{
-	int i,j,k,l,m,n;
-	string s1,s2;
-	int a[1001][1001]={0};
-	cin>>s1>>s2;
-	int l1=s1.length();
-	int l2=s2.length();
-	for(i=0;i<=l1;i++){
-       for(j=0;j<=l2;j++){
-       	if(i==0){
-       		a[i][j]=j;
-       	}
-       	else if(j==0){
-       		a[i][j]=i;
-       	}
-       	else if(s1[i-1]==s2[j-1]){
-       		a[i][j]=a[i-1][j-1];
-       	}
-       	else{
-          a[i][j]=1+min(a[i-1][j-1],min(a[i-1][j],a[i][j-1]));
-       	}
-       }
-	}
 
-prm(a,l1,l2);
 
-cout<<a[l1][l2]<<endl;
-return 0;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
