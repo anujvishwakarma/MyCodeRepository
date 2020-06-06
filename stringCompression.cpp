@@ -13,5 +13,6 @@ int main(int argc, char const *argv[]){
 		}
 		cout<<s[i]<<count;
 	}
+	cout<<endl;
 	return 0;
 }

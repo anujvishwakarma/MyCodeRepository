@@ -6,7 +6,6 @@
     @author : Anuj Vishwakarma
 */
 
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -57,14 +56,13 @@ typedef long long int int64;
 typedef unsigned long long int uint64;
 
 /* Template of basic operation */ 
-template< typename T,typename U> inline void amin(T &x,U y){if (y<x) x=y;}
-template< typename T,typename U> inline void amax(T &x,U y){if (x<y) x=y;}
+template< typename T,typename U> inline void amin(T &x,U &y){if (y<x) x=y;}
+template< typename T,typename U> inline void amax(T &x,U &y){if (x<y) x=y;}
 
 /*******************************************/
 
 
 /* Debug Function */
-#define pr(a) cout<<"debug is "<<a<<" ";
 #define pr1(a) cout<<"debug is "<<a<<" "<<endl;
 #define pr2(a,b) cout<<"debug is "<<a<<" "<<b<<endl;
 #define pr3(a,b,c) cout<<"debug is "<<a<<" "<<b<<" "c<<" "endl;
@@ -76,7 +74,7 @@ void prm(int a[1001][1001],int x,int y){
   cout<<"########Debug Matrix########"<<endl;
    for(int i=0;i<x;i++){
      for(int j=0;j<y;j++){
-         pr(a[i][j]);
+         pr1(a[i][j]);
      }
      nl;
    }
@@ -86,11 +84,9 @@ void prm(int a[1001][1001],int x,int y){
 /******************************************/
 
 
-int main(int argc, char const *argv[])
-{
-
+int main(int argc, char const *argv[]){
 	int i,j,k,l,m,n;
-  
+
 	return 0;
 }
 
