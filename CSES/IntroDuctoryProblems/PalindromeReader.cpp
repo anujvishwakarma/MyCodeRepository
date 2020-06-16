@@ -23,11 +23,11 @@ int main(int argc, char const *argv[]){
 	string temp="";
 	for(i=0;i<26;i++){
 		if(hash[i]%2){
-			oddChar+=hash[i];
+			oddChar+=i+'A';
 		}
 		int count=hash[i]/2;
 		while(count--){
-			temp+=hash[i];
+			temp+=i+'A';
 		}
 	}
 	string temp2 = temp;
