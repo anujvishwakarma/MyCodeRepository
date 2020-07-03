@@ -15,8 +15,6 @@ int main(int argc, char const *argv[]){
 	vector<vector<bool>> dp(n+1, vector<bool>(sum+1, false));
 	for(i=1;i<=n;i++){
 		for(j=1;j<=sum;j++){
-
-			//cout<<"i -> "<<i<<" j-->"<< j<<" coins--> "<<coins[i-1]<<endl; 
 			if(j==coins[i-1]){
 				dp[i][j]=true;
 			}
