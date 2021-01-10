@@ -4,7 +4,7 @@ using namespace std;
 /*
 9 14
 7 6 1
-8 2 1
+8 2 2
 6 5 2
 0 1 4
 2 5 4
