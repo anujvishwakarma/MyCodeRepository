@@ -15,43 +15,37 @@
 3 5 14
 7 8 7
 
-
 */
+
 #include <bits/stdc++.h>
 using namespace std;
 
-
-void prims(vector<pair<int,int>> graph[1001], int n ,int m){
+void dij(vector<pair<int,int>> graph[1001], int n ,int m, int source){
 	int i,j,k;
-	std::vector<int> parent(n,-1);
-	std::vector<int> key(n,INT_MAX);
-	std::vector<bool> inMST(n,false);
+	std::vector<int> parent(n+1,-1);
+	std::vector<int> dist(n+1,INT_MAX);
 
 	priority_queue< pair<int,int> , vector<pair<int,int>>, greater<pair<int,int>> > pq;
 	std::vector<pair<int,int>> :: iterator it;
 
-	key[0]=0;
-	//[weight/Vertex]
-	pq.push(make_pair(0,0));
-	int cost =0;
+	dist[source] = 0;
+	pq.push(make_pair(0, source));
+
 	while(!pq.empty()){
 		int u = pq.top().second;
 		pq.pop();
-		inMST[u]=true;
-		cost+=key[u];
-		for(it=graph[u].begin(); it!=graph[u].end(); ++it){
+		for(it=graph[u].begin();it!=graph[u].end();++it){
 			int nextVertex = (*it).first;
 			int weight = (*it).second;
-			if(!inMST[nextVertex] && key[nextVertex]>weight){
-				parent[nextVertex] = u;
-				key[nextVertex] = weight;
-				pq.push(make_pair(weight, nextVertex));
+			if(dist[nextVertex] > dist[u]+weight){
+				dist[nextVertex] = dist[u]+weight;
+				pq.push(make_pair(dist[nextVertex], nextVertex));
 			}
 		}
 	}
-	cout<<cost<<endl;
-	for(i=1;i<n;i++){
-		cout<<i<<" --> "<< parent[i]<<endl;
+
+	for(i=0;i<n;i++){
+		cout<<dist[i]<<" ";
 	}
 }
 
@@ -65,6 +59,8 @@ int main(int argc, char const *argv[]){
 		graph[u].push_back(make_pair(v,w));
 		graph[v].push_back(make_pair(u,w));
 	}
-	prims(graph, n , m);
+	int source;
+	cin>>source;
+	dij(graph, n , m, source);
 	return 0;
 }
