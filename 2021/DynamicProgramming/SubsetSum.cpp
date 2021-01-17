@@ -17,7 +17,7 @@ bool isSubsetSum(std::vector<int> data, int n, int sum){
 		}
 	}
 	return dp[n][sum];
-}	
+}
 
 int main(int argc, char const *argv[]){
 	int i,j,k,m,n;
