@@ -18,12 +18,10 @@ vector<int> getNextPalindrome(std::vector<int> &data, int n, bool all9){
 		return temp;
 	}
 
-
 	int left, right;
 	int mid = n/2;
 	left = mid-1;
 	bool isleftSmall = false;
-
 
 	if(n%2==0){
 		right = mid;
