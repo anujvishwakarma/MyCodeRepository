@@ -6,7 +6,6 @@ void input(){
 	freopen("output.txt","w",stdout);
 }
 
-
 std::vector<int> getNextGreater(std::vector<int> &data, int n){
 	int i,j,k;
 	i=n-1;
