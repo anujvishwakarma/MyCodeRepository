@@ -12,6 +12,7 @@ struct node {
 };
 
 void printList(struct node *head){
+	cout<<"Printing the list"<<endl;
 	while(head!=NULL){
 		cout<<head->data<<" ";
 		head=head->next;
@@ -55,6 +56,47 @@ struct node *deleteNode(struct node *head, int value){
 	return tmp;
 }
 
+struct node *swapTheNode(struct node *head, int a, int b){
+	cout<<"Swapping the node "<<a<<" "<<b<<endl;
+	int i,j,k;
+	if(a==b){
+		return head;
+	}
+
+	struct node *currX = head;
+	struct node *currY = head;
+
+	struct node *prevX = NULL;
+	struct node *prevY = NULL;
+
+	while(currX->data!=a){
+		prevX = currX;
+		currX = currX->next;
+	}
+
+	while(currY->data!=b){
+		prevY=currY;
+		currY=currY->next;
+	}
+
+	if(prevX != NULL){
+		prevX->next= currY;
+	}else{
+		head = currX;
+	}
+
+	if(prevY !=NULL){
+		prevY->next=currX;
+	}else{
+		head = prevY;
+	}
+
+	struct node *temp = currX->next;
+	currX->next = currY->next;
+	currY->next = temp;
+	return head;
+}
+
 int main(int argc, char const *argv[]){
 	int i,j,k,l,m,n;
 	input();
@@ -66,10 +108,21 @@ int main(int argc, char const *argv[]){
 	}
 	//print_the_list
 	printList(start);
+	
 
+	/****************Delete the node******************/
 	//delete the node - 
-	start = deleteNode(start, 4);
+	//start = deleteNode(start, 4);
+	//printList(start);
+	/*************************************************/
+
+
+	/**************Swap the Node**********************/
+	//	
+	cin>>n>>m;
+	start = swapTheNode(start, n , m);
 	printList(start);
+	/*************************************************/
 
 	return 0;
 }
