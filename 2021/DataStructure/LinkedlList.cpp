@@ -20,12 +20,20 @@ void printList(struct node *head){
 	cout<<endl;
 }
 
+int getLength(struct node *start){
+	int k=0;
+	while(start!=NULL){
+		k++;
+		start = start->next;
+	}
+	return k;
+}
+
 struct node *insertNode(struct node *start, int value){
 	int i,j;
 	struct node *tmp = (struct node *)malloc(sizeof(struct node ));
 	tmp->data=value;
 	tmp->next=NULL;
-
 	struct node *head = start;
 	if(start==NULL){
 		return tmp;
@@ -97,6 +105,39 @@ struct node *swapTheNode(struct node *head, int a, int b){
 	return head;
 }
 
+struct node *reverseList(struct node *head){
+	cout<<"Reversing the list"<<endl;
+	int i,j;
+	struct node *prevNode = NULL;
+	struct node *nextNode = NULL;
+	struct node *currNode = head;
+	while(currNode!=NULL){
+		nextNode = currNode->next;
+		currNode->next = prevNode;
+		prevNode = currNode;
+		currNode = nextNode;
+	}
+	return prevNode;
+}
+
+struct node *reverseListGroupK(struct node *head, int k){
+	int i,j,count=0;
+	struct node *prevNode = NULL;
+	struct node *nextNode = NULL;
+	struct node *currNode = head;
+	while(currNode!=NULL && count<k){
+		nextNode = currNode->next;
+		currNode->next = prevNode;
+		prevNode = currNode;
+		currNode = nextNode;
+		count++;
+	}
+	if(currNode != NULL){
+		head->next = reverseListGroupK(currNode, k);
+	}
+	return prevNode;
+}
+
 int main(int argc, char const *argv[]){
 	int i,j,k,l,m,n;
 	input();
@@ -109,20 +150,33 @@ int main(int argc, char const *argv[]){
 	//print_the_list
 	printList(start);
 	
-
 	/****************Delete the node******************/
-	//delete the node - 
-	//start = deleteNode(start, 4);
-	//printList(start);
+	/* delete the node - 
+	   start = deleteNode(start, 4);
+	   printList(start);*/
 	/*************************************************/
-
 
 	/**************Swap the Node**********************/
-	//	
-	cin>>n>>m;
-	start = swapTheNode(start, n , m);
-	printList(start);
+	/*
+	   cin>>n>>m;
+	   start = swapTheNode(start, n , m);
+	   printList(start);
+	*/
 	/*************************************************/
+
+	/**********Reverse the List**********************/
+	/* start = reverseList(start);
+	 printList(start); */
+	/***********************************************/
+
+
+	/**********Reverse the List in group K**********************/
+	/* cin>>k;
+	 start = reverseListGroupK(start,k);
+	 printList(start); */
+	/***********************************************/
+
+	
 
 	return 0;
 }
