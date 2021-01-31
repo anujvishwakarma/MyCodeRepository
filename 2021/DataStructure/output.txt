@@ -1,9 +1,4 @@
 Printing the list
-3 
+50 20 15 4 10 
 Printing the list
-8 9 
-1 1
-0 1
-Additing 2 numbers
-Printing the list
-1 0 1 
+50 20 15 4 10 
