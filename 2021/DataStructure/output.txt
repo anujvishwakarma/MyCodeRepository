@@ -1,4 +1,0 @@
-Printing the list
-50 20 15 4 10 
-Printing the list
-50 20 15 4 10 
