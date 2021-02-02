@@ -6,7 +6,8 @@ using namespace std;
            /     \ 
           30      70 
          /  \    /  \ 
-       20   40  60   80 */
+       20   40  60   80 
+*/
 
 void input(){
 	freopen("input.txt","r",stdin);
@@ -90,6 +91,44 @@ int height(struct node *root){
 }
 
 
+void RecpReanDsuCc(struct node *root, int value, struct node *(&pre), struct node *(&succ)){
+	if(root==NULL){
+		return;
+	}
+	if(root->data == value){
+		if(root->left!=NULL){
+			struct node *tmp = root->left;
+			while(tmp->right!=NULL){
+				tmp = tmp->right;
+			}
+			pre = tmp;
+		}
+		if(root->right!=NULL){
+			struct node *tmp = root->right;
+			while(tmp->left!=NULL){
+				tmp = tmp->left;
+			}
+			succ = tmp;
+		}
+		return;
+	}
+	if(root->data > value){
+		succ = root;
+		RecpReanDsuCc(root->left, value, pre, succ);
+	}else{
+		pre = root;
+		RecpReanDsuCc(root->right, value,pre, succ);
+	}
+}
+
+void findPreAndSucc(struct node *root, int value){
+	struct node *pre = NULL;
+	struct node *succ = NULL;
+	RecpReanDsuCc(root, value, pre, succ);
+
+	cout<<"Pre is --> "<<pre->data<<" Succ is --> "<<succ->data<<" "<<endl;
+}
+
 int main(int argc, char const *argv[]) {
 	input();
 	int i,j,k,m,n;
@@ -104,13 +143,6 @@ int main(int argc, char const *argv[]) {
 	inorder(root);
 	cout<<endl;
 	cout<<"-------------------------->"<<endl;
-
-	//levelOrder;
-	//levelOrder(root);
-
-	//int h = height(root);
-	//cout<<"height is "<<h<<endl;
-	//
-	inorderbyStack(root);
+	
 	return 0;
-}
+};
