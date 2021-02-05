@@ -129,6 +129,38 @@ void findPreAndSucc(struct node *root, int value){
 	cout<<"Pre is --> "<<pre->data<<" Succ is --> "<<succ->data<<" "<<endl;
 }
 
+void inorderData(struct node *root, map<int, std::vector<int>> &myMap, int height){
+	if(root == NULL){
+		return;
+	}
+	
+	map<int, std::vector<int> >::iterator it;
+	it = myMap.find(height);
+	if(it!=myMap.end()){
+		it->second.push_back(root->data);
+	}else{
+		std::vector<int> temp;
+		temp.push_back(root->data);
+		myMap.insert(make_pair(height, temp));
+	}
+
+	inorderData(root->left, myMap, height-1);
+	inorderData(root->right, myMap, height + 1);
+}
+
+void verticalOrder(struct node *root) {
+	map<int, std::vector<int>> myMap;
+	map<int, std::vector<int>>::iterator it;
+	inorderData(root, myMap, 0);
+	for(it=myMap.begin() ; it!=myMap.end(); ++it){
+		std::vector<int> temp = it->second;
+		for(int i=0;i<temp.size();i++){
+			cout<<temp[i]<<" ";
+		}
+		cout<<endl;
+	}
+}
+
 int main(int argc, char const *argv[]) {
 	input();
 	int i,j,k,m,n;
@@ -143,6 +175,6 @@ int main(int argc, char const *argv[]) {
 	inorder(root);
 	cout<<endl;
 	cout<<"-------------------------->"<<endl;
-	
+	verticalOrder(root);
 	return 0;
 };
