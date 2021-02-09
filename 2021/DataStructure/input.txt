@@ -1,8 +1,8 @@
+6
+4 5 6 -2 3 -1
 5
-anuj
-anujgh
-sjfd
-sj
-mka
-anujgh
-anuja
+1 6
+2 4
+3 3
+4 6
+1 3
